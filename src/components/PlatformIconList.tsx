@@ -22,13 +22,13 @@ const PlatformIconList = ({ platforms }: Props) => {
   // says there's any number of keys of type string that map to react's IconType
   const iconMap: { [key: string]: IconType } = {
     pc: FaWindows,
-    playsation: FaPlaystation,
+    playstation: FaPlaystation,
     xbox: FaXbox,
     nintendo: SiNintendo,
     mac: FaApple,
     linux: FaLinux,
     android: FaAndroid,
-    iox: MdPhoneIphone,
+    ios: MdPhoneIphone,
     web: BsGlobe,
   };
 
