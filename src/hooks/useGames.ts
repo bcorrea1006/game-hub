@@ -1,4 +1,5 @@
 import useData from "./useData";
+import { Genre } from "./useGenres";
 
 export interface Platform {
   id: number;
@@ -14,6 +15,11 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = () => useData<Game>('/games');
+// The ? mark = "selected chaining". It allows us to acces fields even if object
+// is null. If the Genre object is null it won't try to grab selectedGenre.id
+const useGames = (selectedGenre: Genre | null) =>
+  useData<Game>('/games', { params: { genres: selectedGenre?.id}}, [
+    selectedGenre?.id,
+  ]);
 
 export default useGames;
