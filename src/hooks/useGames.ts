@@ -1,5 +1,5 @@
+import { GameQuery } from "../App";
 import useData from "./useData";
-import { Genre } from "./useGenres";
 
 export interface Platform {
   id: number;
@@ -17,12 +17,13 @@ export interface Game {
 
 // The ? mark = "selected chaining". It allows us to acces fields even if object
 // is null. If the Genre object is null it won't try to grab selectedGenre.id
-const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) =>
+const useGames = (gameQuery: GameQuery) =>
   useData<Game>('/games', {
     params: {
-        genres: selectedGenre?.id,
-        platforms: selectedPlatform?.id
+        genres: gameQuery.genre?.id,
+        parent_platforms: gameQuery.platform?.id
     }},
-    [selectedGenre?.id, selectedPlatform?.id]);
+    [gameQuery]
+  );
 
 export default useGames;
