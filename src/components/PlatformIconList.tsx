@@ -18,10 +18,6 @@ interface Props {
 }
 
 const PlatformIconList = ({ platforms }: Props) => {
-  // Handle scenario with no platform.
-  // I'm looking at you "Hamsterinabol 2: Ham Harder"
-  if (!platforms) return;
-
   // Called an index signature. Used so we don't have to specify name of keys
   // says there's any number of keys of type string that map to react's IconType
   const iconMap: { [key: string]: IconType } = {
@@ -36,11 +32,18 @@ const PlatformIconList = ({ platforms }: Props) => {
     web: BsGlobe,
   };
 
+  // Handle scenario with no platform.
+  // I'm looking at you "Hamsterinabol 2: Ham Harder"
   return (
     <HStack marginY={1}>
-      {platforms.map((platform) => (
-        <Icon key={platform.id} as={iconMap[platform.slug]} color='gray.500' />
-      ))}
+      {platforms &&
+        platforms.map((platform) => (
+          <Icon
+            key={platform.id}
+            as={iconMap[platform.slug]}
+            color='gray.500'
+          />
+        ))}
     </HStack>
   );
 };

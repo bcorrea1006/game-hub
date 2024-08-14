@@ -5,8 +5,7 @@ import {
   Heading,
   HStack,
   Image,
-  Text,
-  useColorMode,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import PlatformIconList from './PlatformIconList';
 import CriticScore from './CriticScore';
@@ -18,11 +17,11 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-  const { colorMode } = useColorMode();
+  const bgColor = useColorModeValue('gray.100', 'gray.700');
 
   return (
     // Kinda ugly implementation but makes light mode look a little better
-    <Card bgColor={colorMode === 'light' ? 'gray.100' : 'gray.700'}>
+    <Card bgColor={bgColor}>
       <Image src={getCroppedImageUrl(game.background_image)} />
       <CardBody>
         <HStack justifyContent='space-between' marginBottom={3}>
